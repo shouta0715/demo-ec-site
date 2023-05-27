@@ -20,7 +20,7 @@ export async function GET() {
 
     const products = await stripe.products.list();
 
-    // productsにはpriceが含まれていないので、priceを取得する
+    // productsにはpriceが含まれていないので、priceを取得する、取得したらproductsにpriceを追加する
 
     return NextResponse.json<StripeProductResult>({
       data: products,
