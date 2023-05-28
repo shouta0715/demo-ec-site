@@ -1,4 +1,8 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import { initialize, mswDecorator } from "msw-storybook-addon";
+
+initialize();
+
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -16,4 +20,6 @@ const config: StorybookConfig = {
   },
   staticDirs: ["../public"],
 };
+
+export const decorators = [mswDecorator];
 export default config;

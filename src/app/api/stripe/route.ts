@@ -51,8 +51,6 @@ export async function GET() {
       })
     );
 
-    // productsにはpriceが含まれていないので、priceを取得する、取得したらproductsにpriceを追加する
-
     return NextResponse.json<StripeProductWithPriceResult>({
       data: result,
       message: "ok",
