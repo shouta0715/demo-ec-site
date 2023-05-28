@@ -1,12 +1,11 @@
-import { Products } from "@/features/products/components";
+import { Products } from "@/features/products/components/pages";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Next.js + TypeScript + Tailwind CSS</h1>
+    <>
       {/* @ts-expect-error Server Component */}
       <Products />
-    </div>
+    </>
   );
 };
 

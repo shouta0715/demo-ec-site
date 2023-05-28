@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
-import { CartButton } from "@/features/products/components/modules/client/CartButton";
+import { Image } from "@/components/Elements/Image";
+import { CartButton } from "@/features/products/components/client/CartButton";
 import { StripeProductWithPrice } from "@/libs/server/types";
 
 type Props = StripeProductWithPrice;
@@ -15,10 +15,9 @@ export const Product = async ({
     <div key={id} className="flex flex-col justify-between">
       <div className="relative">
         <div className="relative h-72 w-full overflow-hidden rounded-lg">
-          <img
+          <Image
             alt={name}
             className="h-full w-full object-cover object-center"
-            loading="lazy"
             src={images[0]}
           />
         </div>
