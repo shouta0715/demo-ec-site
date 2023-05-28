@@ -3,8 +3,9 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import React from "react";
+import { ActionIcon } from "@/components/Elements/ActionIcon";
 import { Avatar } from "@/components/Elements/Avatar";
-import { MenuButton } from "@/components/Layouts/header/clients/MenuButton";
+import { MenuButton } from "@/components/Layouts/Header/clients/MenuButton";
 
 export const Header = () => {
   return (
@@ -31,20 +32,23 @@ export const Header = () => {
           />
         </form>
         <div className="flex items-center gap-x-4 lg:gap-x-6">
-          <button
-            className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
-            type="button"
-          >
-            <span className="sr-only">View notifications</span>
-            <ShoppingCartIcon aria-hidden="true" className="h-6 w-6" />
-          </button>
+          <div className="flex flex-col items-center justify-center space-y-1">
+            <ActionIcon
+              className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
+              theme="transparent"
+              type="button"
+            >
+              <span className="sr-only">カートを見る</span>
+              <ShoppingCartIcon aria-hidden="true" className="h-6 w-6" />
+            </ActionIcon>
+          </div>
 
           {/* Separator */}
           <div
             aria-hidden="true"
             className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
           />
-          <Avatar isAction size="sm" />
+          <Avatar alt="avatar" isAction size="sm" />
         </div>
       </div>
     </div>

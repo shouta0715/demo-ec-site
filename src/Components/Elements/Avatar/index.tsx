@@ -25,6 +25,7 @@ type AvatarProps = {
   isLogin?: boolean;
   isAction?: boolean;
   radius?: keyof typeof rounded;
+  alt: string;
   className?: string;
 } & React.HTMLAttributes<HTMLButtonElement>;
 
@@ -34,6 +35,7 @@ export const Avatar = ({
   isLogin = false,
   isAction = false,
   className = "",
+  alt,
   radius = "full",
   ...props
 }: AvatarProps) => {
@@ -48,7 +50,7 @@ export const Avatar = ({
         className
       )}
     >
-      <Image alt="avatar" src={src ?? ""} />
+      <Image alt={alt} src={src ?? ""} />
     </Component>
   ) : (
     <Component

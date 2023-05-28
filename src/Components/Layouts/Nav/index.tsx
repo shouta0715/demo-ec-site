@@ -16,6 +16,7 @@ import {
 import clsx from "clsx";
 import Link from "next/link";
 import { Fragment } from "react";
+import { Avatar } from "@/components/Elements/Avatar";
 import { useSideBarState } from "@/components/Layouts/store";
 
 const navigation = [
@@ -96,7 +97,7 @@ export const Nav = () => {
                 {/* Sidebar component, swap this element with another sidebar if you like */}
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                   <div className="flex h-16 shrink-0 items-center">
-                    <img
+                    <Avatar
                       alt="Your Company"
                       className="h-8 w-auto"
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"

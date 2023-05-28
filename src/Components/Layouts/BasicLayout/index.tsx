@@ -1,6 +1,6 @@
 import React from "react";
 import { NotificationProvider } from "@/components/Elements/Notification/Provider";
-import { Header } from "@/components/Layouts/header";
+import { Header } from "@/components/Layouts/Header";
 import { Nav } from "@/components/Layouts/Nav";
 
 export const BasicLayout = ({ children }: { children: React.ReactNode }) => {
