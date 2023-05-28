@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { LinkButton } from "@/components/Elements/LinkButton";
+import { CartButton } from "@/features/modules/client/CartButton";
 import { StripeProductWithPrice } from "@/libs/server/types";
 
 type Props = StripeProductWithPrice;
@@ -18,6 +18,7 @@ export const Product = async ({
           <img
             alt={name}
             className="h-full w-full object-cover object-center"
+            loading="lazy"
             src={images[0]}
           />
         </div>
@@ -36,15 +37,7 @@ export const Product = async ({
         </div>
       </div>
       <div className="mt-6">
-        <LinkButton
-          className="flex items-center justify-center px-8 py-2"
-          href={`/${id}`}
-          radius="md"
-          size="sm"
-          theme="primary"
-        >
-          カートに追加<span className="sr-only">{name}をカートに追加する</span>
-        </LinkButton>
+        <CartButton name={name} />
       </div>
     </div>
   );

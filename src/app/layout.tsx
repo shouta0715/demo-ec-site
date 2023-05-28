@@ -1,5 +1,6 @@
-import "../styles/tailwind.css";
 import { Inter } from "next/font/google";
+import "../styles/tailwind.css";
+import { NotificationProvider } from "@/components/Elements/Notification/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,9 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NotificationProvider>{children}</NotificationProvider>
+      </body>
     </html>
   );
 };

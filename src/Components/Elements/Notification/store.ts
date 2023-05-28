@@ -44,10 +44,9 @@ export const useNotificationState = create<Notification>((set, get) => ({
         if (!isPersistent) {
           get().onHide();
         }
-      }, duration);
+      }, duration ?? 3000);
 
       return {
-        ...get(),
         ...state,
         isShown: true,
         timer,
