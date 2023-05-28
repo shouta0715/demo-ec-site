@@ -5,6 +5,12 @@ export type NextResponseResult<T> = {
   message: string;
 };
 
-export type StripeProductResult = NextResponseResult<
-  Stripe.Response<Stripe.ApiList<Stripe.Product>>
+type Price = Stripe.Price;
+type Product = Stripe.Product;
+
+export type StripeProductWithPrice = Product & {
+  price: Price;
+};
+export type StripeProductWithPriceResult = NextResponseResult<
+  StripeProductWithPrice[]
 >;
