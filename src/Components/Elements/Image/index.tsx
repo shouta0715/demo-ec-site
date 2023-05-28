@@ -11,7 +11,12 @@ export const Image = ({ src, alt, className = "", defaultImage }: Props) => {
   return (
     <picture>
       <source srcSet={src} />
-      <img alt={alt} className={className} src={src ?? defaultImage} />
+      <img
+        alt={alt}
+        className={className}
+        loading="lazy"
+        src={src ?? defaultImage}
+      />
     </picture>
   );
 };
