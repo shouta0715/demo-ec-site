@@ -1,4 +1,9 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import { initialize, mswDecorator } from "msw-storybook-addon";
+import path from "path";
+
+initialize();
+
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -14,6 +19,16 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  webpackFinal: async (config) => {
+    if (!config.resolve) config.resolve = {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": path.resolve(__dirname, "../src"),
+    };
+    return config;
+  },
   staticDirs: ["../public"],
 };
+
+export const decorators = [mswDecorator];
 export default config;

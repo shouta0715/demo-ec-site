@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
+    "check-types": "tsc --pretty --noEmit",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "format": "prettier --write .",
+    "check:all": "pnpm check-types && pnpm check-lint && pnpm format",
     "sb": "storybook dev -p 6006",
     "sb:build": "storybook build",
     "test": "jest",
@@ -30,7 +34,8 @@
     "stripe": "^12.7.0",
     "tailwind-merge": "^1.12.0",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^7.0.18",
@@ -66,11 +71,17 @@
     "jest-environment-jsdom": "^29.5.0",
     "jest-html-reporters": "^3.1.4",
     "lint-staged": "^13.2.2",
+    "msw": "^1.2.1",
+    "msw-storybook-addon": "^1.8.0",
+    "next-router-mock": "^0.9.3",
     "prettier": "2.8.8",
     "storybook": "^7.0.18",
     "ts-node": "^10.9.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

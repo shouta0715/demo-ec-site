@@ -11,3 +11,4 @@ graphql.ts
 __reports__
 coverage
 storybook-static
+pnpm-lock.yaml

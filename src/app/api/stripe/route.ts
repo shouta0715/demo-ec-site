@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { StripeProductResult } from "@/libs/server/types";
+import {
+  StripeProductWithPrice,
+  StripeProductWithPriceResult,
+} from "@/libs/server/types";
 
 const API_KEY = process.env.STRIPE_API_KEY as string;
 
@@ -20,10 +23,36 @@ export async function GET() {
 
     const products = await stripe.products.list();
 
-    // productsにはpriceが含まれていないので、priceを取得する、取得したらproductsにpriceを追加する
+    const result = await Promise.all(
+      products.data.map(async (product): Promise<StripeProductWithPrice> => {
+        const price = await stripe.prices.list({
+          product: product.id,
+        });
 
-    return NextResponse.json<StripeProductResult>({
-      data: products,
+        const priceData = price.data.map((p) => ({
+          id: p.id,
+          unit_amount: p.unit_amount,
+          currency: p.currency,
+          transform_quantity: p.transform_quantity,
+        }));
+
+        const productData = {
+          id: product.id,
+          description: product.description,
+          name: product.name,
+          images: product.images,
+          unit_label: product.unit_label,
+        };
+
+        return {
+          ...productData,
+          prices: priceData,
+        };
+      })
+    );
+
+    return NextResponse.json<StripeProductWithPriceResult>({
+      data: result,
       message: "ok",
     });
   } catch (error) {
