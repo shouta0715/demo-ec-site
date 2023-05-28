@@ -1,63 +1,69 @@
 import { create } from "zustand";
 
-export type NotificationType = "success" | "error" | "info";
-
-const genRandomId = () => {
-  return Math.random().toString(36).substr(2, 9);
-};
+/* eslint-disable @typescript-eslint/no-empty-function */
 
 type TextProps = {
   title: string;
   message?: string;
 };
 
+export type NotificationType = "success" | "error" | "info";
+
 export type NotificationState = {
-  id: string;
   duration: number;
   type: NotificationType;
   isShown: boolean;
   isPersistent: boolean;
-  timerId?: NodeJS.Timeout; // Add this line
+  timer: NodeJS.Timeout | null;
 } & TextProps;
 
 type NotificationActions = {
-  onShow: (state: Omit<NotificationState, "id">) => void;
-  onHide: (id: string) => void;
+  onShow: (state: Partial<NotificationState>) => void;
+  onHide: () => void;
 };
 
-export type Notification = {
-  state: NotificationState[];
-} & NotificationActions;
+export type Notification = NotificationState & NotificationActions;
 
-const defaultState: NotificationState[] = [];
+const defaultState: NotificationState = {
+  title: "",
+  message: "",
+  duration: 3000,
+  isShown: false,
+  type: "info",
+  isPersistent: false,
+  timer: null,
+};
 
 export const useNotificationState = create<Notification>((set, get) => ({
-  state: defaultState,
-  onShow: (state) => {
-    const id = genRandomId();
-    const { state: currentState } = get();
+  ...defaultState,
+  onShow: (state) =>
+    set(() => {
+      const { duration, isPersistent } = state;
 
-    if (state.isPersistent) {
-      const newState = [...currentState, { ...state, id }];
-      set({ state: newState });
+      const timer = setTimeout(() => {
+        if (!isPersistent) {
+          get().onHide();
+        }
+      }, duration);
 
-      return;
-    }
-    const timerId = setTimeout(() => {
-      get().onHide(id);
-    }, state.duration);
+      return {
+        ...get(),
+        ...state,
+        isShown: true,
+        timer,
+      };
+    }),
+  onHide: () =>
+    set(() => {
+      const { timer } = get();
 
-    const newState = [...currentState, { ...state, id, timerId }];
-    set({ state: newState });
-  },
+      if (timer) {
+        clearTimeout(timer);
+      }
 
-  onHide: (id) => {
-    const { state: currentState } = get();
-    const notification = currentState.find((item) => item.id === id);
-    if (notification && notification.timerId) {
-      clearTimeout(notification.timerId);
-    }
-    const newState = currentState.filter((item) => item.id !== id);
-    set({ state: newState });
-  },
+      return {
+        ...get(),
+        isShown: false,
+      };
+    }),
 }));

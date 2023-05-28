@@ -39,71 +39,70 @@ const getTypeIcons = (type: NotificationType): React.FC => {
 };
 
 export const Notification = () => {
-  const { notifications, onHide } = useNotificationState((state) => ({
-    notifications: state.state,
+  const {
+    isShown: show,
+    title,
+    message,
+    type,
+    onHide,
+  } = useNotificationState((state) => ({
+    isShown: state.isShown,
+    title: state.title,
+    message: state.message,
+    type: state.type,
+    duration: state.duration,
+    isPersistent: state.isPersistent,
     onHide: state.onHide,
   }));
 
   return (
     <div
       aria-live="assertive"
-      className="pointer-events-none fixed inset-0 z-[200] flex px-4 py-6 sm:p-6"
+      className="pointer-events-none fixed inset-0 z-[200] flex  px-4 py-6 sm:p-6"
     >
-      <div className="flex w-full flex-col items-center space-y-4  sm:items-end">
-        {notifications.map((notification) => {
-          return (
-            <Transition
-              key={notification.id}
-              as={Fragment}
-              enter="transform ease-out duration-300 transition"
-              enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
-              enterTo="translate-y-0 opacity-100 sm:translate-x-0"
-              leave="transition ease-in duration-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-              show={notification.isShown}
-            >
-              <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg">
-                <div className="p-4">
-                  <div className="flex items-start">
-                    <div className="shrink-0">
-                      {getTypeIcons(notification.type)({
-                        className: clsx(
-                          "h-6 w-6",
-                          TypeColors[notification.type]
-                        ),
-                      })}
-                    </div>
-                    <div className="ml-3 w-0 flex-1 pt-0.5">
-                      <p
-                        className={`text-sm font-bold text-gray-900 ${
-                          TypeTextColors[notification.type]
-                        }`}
-                      >
-                        {notification.title}
-                      </p>
-                      {notification.message && (
-                        <p className="mt-1 text-sm text-gray-500">
-                          {notification.message}
-                        </p>
-                      )}
-                    </div>
-                    <div className="ml-4 flex shrink-0">
-                      <button
-                        className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        onClick={() => onHide(notification.id)}
-                        type="button"
-                      >
-                        <span className="sr-only">Close</span>
-                        <XMarkIcon aria-hidden="true" className="h-5 w-5" />
-                      </button>
-                    </div>
-                  </div>
+      <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
+        <Transition
+          as={Fragment}
+          enter="transform ease-out duration-300 transition"
+          enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+          enterTo="translate-y-0 opacity-100 sm:translate-x-0"
+          leave="transition ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+          show={show}
+        >
+          <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg">
+            <div className="p-4">
+              <div className="flex items-start">
+                <div className="shrink-0">
+                  {getTypeIcons(type)({
+                    className: clsx("h-6 w-6", TypeColors[type]),
+                  })}
+                </div>
+                <div className="ml-3 w-0 flex-1 pt-0.5">
+                  <p
+                    className={`text-sm font-bold text-gray-900 ${TypeTextColors[type]}`}
+                  >
+                    {title}
+                  </p>
+                  {message && (
+                    <p className="mt-1 text-sm text-gray-500">{message}</p>
+                  )}
+                </div>
+                <div className="ml-4 flex shrink-0">
+                  <button
+                    className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    onClick={onHide}
+                    type="button"
+                  >
+                    <span className="sr-only">Close</span>
+                    <XMarkIcon aria-hidden="true" className="h-5 w-5" />
+                  </button>
                 </div>
               </div>
-            </Transition>
-          );
-        })}
+            </div>
+          </div>
+        </Transition>
       </div>
     </div>
   );

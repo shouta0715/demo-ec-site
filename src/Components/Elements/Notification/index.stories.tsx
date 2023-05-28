@@ -6,30 +6,13 @@ import {
   useNotificationState,
 } from "@/components/Elements/Notification/store";
 
-const defaultState: NotificationState = {
-  duration: 5000,
-  type: "success",
-  isShown: true,
-  isPersistent: false,
-  title: "",
-  message: "",
-  id: "",
-};
-
 const ShowNotification = (props: Partial<NotificationState>) => {
   const { onShow } = useNotificationState();
-
-  const { ...rest } = props;
 
   return (
     <Button
       className="rounded-md bg-blue-500 px-4 py-2 text-white"
-      onClick={() =>
-        onShow({
-          ...defaultState,
-          ...rest,
-        })
-      }
+      onClick={() => onShow(props)}
     >
       Show Notification
     </Button>
