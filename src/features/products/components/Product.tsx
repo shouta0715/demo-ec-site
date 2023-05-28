@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { CartButton } from "@/features/modules/client/CartButton";
+import { CartButton } from "@/features/products/components/modules/client/CartButton";
 import { StripeProductWithPrice } from "@/libs/server/types";
 
 type Props = StripeProductWithPrice;
