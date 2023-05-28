@@ -16,7 +16,7 @@ import {
 import clsx from "clsx";
 import Link from "next/link";
 import { Fragment } from "react";
-import { Avatar } from "@/components/Elements/Avatar";
+import { Image } from "@/components/Elements/Image";
 import { useSideBarState } from "@/components/Layouts/store";
 
 const navigation = [
@@ -45,7 +45,7 @@ export const Nav = () => {
       <Transition.Root as={Fragment} show={sidebarOpen}>
         <Dialog
           as="div"
-          className="relative z-50 lg:hidden"
+          className="relative z-50 md:hidden"
           onClose={setSidebarOpen}
         >
           <Transition.Child
@@ -97,7 +97,7 @@ export const Nav = () => {
                 {/* Sidebar component, swap this element with another sidebar if you like */}
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                   <div className="flex h-16 shrink-0 items-center">
-                    <Avatar
+                    <Image
                       alt="Your Company"
                       className="h-8 w-auto"
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -185,7 +185,7 @@ export const Nav = () => {
           </div>
         </Dialog>
       </Transition.Root>
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+      <div className="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-72 md:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">

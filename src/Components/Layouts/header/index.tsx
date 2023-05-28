@@ -9,12 +9,12 @@ import { MenuButton } from "@/components/Layouts/Header/clients/MenuButton";
 
 export const Header = () => {
   return (
-    <div className="flex h-16 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
+    <div className="flex h-16 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 md:px-0 md:shadow-none">
       <MenuButton />
 
-      <div aria-hidden="true" className="h-6 w-px bg-gray-200 lg:hidden" />
+      <div aria-hidden="true" className="h-6 w-px bg-gray-200 md:hidden" />
 
-      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+      <div className="flex flex-1 gap-x-4 self-stretch md:gap-x-6">
         <form action="#" className="relative flex flex-1" method="GET">
           <label className="sr-only" htmlFor="search-field">
             商品を検索
@@ -31,7 +31,7 @@ export const Header = () => {
             type="search"
           />
         </form>
-        <div className="flex items-center gap-x-4 lg:gap-x-6">
+        <div className="flex items-center gap-x-4 md:gap-x-6">
           <div className="flex flex-col items-center justify-center space-y-1">
             <ActionIcon
               className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
@@ -46,7 +46,7 @@ export const Header = () => {
           {/* Separator */}
           <div
             aria-hidden="true"
-            className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
+            className="hidden md:block md:h-6 md:w-px md:bg-gray-200"
           />
           <Avatar alt="avatar" isAction size="sm" />
         </div>

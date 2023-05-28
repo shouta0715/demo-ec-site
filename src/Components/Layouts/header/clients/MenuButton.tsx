@@ -9,7 +9,7 @@ export const MenuButton = () => {
 
   return (
     <button
-      className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+      className="-m-2.5 p-2.5 text-gray-700 md:hidden"
       onClick={setSideBarOpen}
       type="button"
     >

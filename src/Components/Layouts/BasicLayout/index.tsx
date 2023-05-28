@@ -7,12 +7,12 @@ export const BasicLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <NotificationProvider>
       <Nav />
-      <div className="lg:pl-72">
-        <div className="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8">
+      <div className="md:pl-72">
+        <div className="sticky top-0 z-40 md:mx-auto md:max-w-7xl md:px-8">
           <Header />
         </div>
         <main className="py-10">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
             {children}
           </div>
         </main>
