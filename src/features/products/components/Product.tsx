@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { LinkButton } from "@/Components/Elements/LinkButton";
+import { LinkButton } from "@/components/Elements/LinkButton";
 import { StripeProductWithPrice } from "@/libs/server/types";
 
 type Props = StripeProductWithPrice;

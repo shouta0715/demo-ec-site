@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Loader } from "@/Components/Elements/Loader";
+import { Loader } from "@/components/Elements/Loader";
 import { cn } from "@/utils";
 
 const sizes = {

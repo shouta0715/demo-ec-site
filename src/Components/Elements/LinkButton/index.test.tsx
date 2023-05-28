@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
-import { LinkButton } from "@/Components/Elements/LinkButton";
+import { LinkButton } from "@/components/Elements/LinkButton";
 
 const user = userEvent.setup();
 

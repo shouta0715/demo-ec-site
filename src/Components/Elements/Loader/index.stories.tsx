@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Loader } from "@/Components/Elements/Loader";
+import { Loader } from "@/components/Elements/Loader";
 
 export default {
   title: "Components/Elements/Loader",

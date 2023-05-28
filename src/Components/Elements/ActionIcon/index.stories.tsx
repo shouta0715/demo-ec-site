@@ -1,6 +1,6 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { Meta, StoryObj } from "@storybook/react";
-import { ActionIcon } from "@/Components/Elements/ActionIcon";
+import { ActionIcon } from "@/components/Elements/ActionIcon";
 
 export default {
   title: "Components/Elements/ActionIcon",

@@ -1,6 +1,6 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/Components/Elements/Button";
+import { Button } from "@/components/Elements/Button";
 
 export default {
   title: "Components/Elements/Button",

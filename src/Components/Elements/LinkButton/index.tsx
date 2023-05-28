@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ButtonProps } from "@/Components/Elements/Button";
+import { ButtonProps } from "@/components/Elements/Button";
 import { cn } from "@/utils";
 
 const sizes = {
