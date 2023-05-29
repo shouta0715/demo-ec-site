@@ -9,6 +9,7 @@ export const BasicLayout = ({ children }: { children: React.ReactNode }) => {
       <Nav />
       <div className="md:pl-72">
         <div className="sticky top-0 z-40 md:mx-auto md:max-w-7xl md:px-8">
+          {/* @ts-expect-error Server Component */}
           <Header />
         </div>
         <main className="py-10">

@@ -3,35 +3,50 @@
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
-import {
-  CalendarIcon,
-  ChartPieIcon,
-  Cog6ToothIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 import { Image } from "@/components/Elements/Image";
 import { useSideBarState } from "@/components/Layouts/store";
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+  { name: "すべての商品", href: "/" },
+  { name: "野菜セット", href: "/products?category=vegetables" },
+  { name: "野菜", href: "/products?category=vegetable" },
+  { name: "肉", href: "/products?category=meat" },
+  { name: "果物", href: "/products?category=fruit" },
+  { name: "飲み物", href: "/products?category=drink" },
+  { name: "魚介類", href: "/products?category=seafood" },
+  { name: "卵・乳製品", href: "/products?category=egg" },
+  { name: "米・パン", href: "/products?category=rice" },
+  { name: "お菓子", href: "/products?category=sweets" },
+  { name: "調味料", href: "/products?category=seasoning" },
+  { name: "その他", href: "/products?category=other" },
 ];
 
-const teams = [
-  { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-  { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-  { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+const regulars = [
+  {
+    name: "野菜セット",
+    href: "/products/regulars?category=vegetables",
+    initial: "V",
+  },
+  {
+    name: "米",
+    href: "/products/regulars?category=rice",
+    initial: "R",
+  },
+  {
+    name: "果物",
+    href: "/products/regulars?category=fruit",
+    initial: "F",
+  },
+  {
+    name: "肉",
+    href: "/products/regulars?category=meat",
+    initial: "M",
+  },
 ];
 
 export const Nav = () => {
@@ -39,6 +54,8 @@ export const Nav = () => {
     state.sidebarOpen,
     state.setSidebarOpen,
   ]);
+
+  const pathname = usePathname();
 
   return (
     <>
@@ -100,7 +117,7 @@ export const Nav = () => {
                     <Image
                       alt="Your Company"
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=teal&shade=600"
                     />
                   </div>
                   <nav className="flex flex-1 flex-col">
@@ -111,22 +128,13 @@ export const Nav = () => {
                             <li key={item.name}>
                               <a
                                 className={clsx(
-                                  item.current
-                                    ? "bg-gray-50 text-indigo-600"
-                                    : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+                                  pathname === item.href
+                                    ? "bg-gray-50 text-teal-600"
+                                    : "text-gray-700 hover:bg-gray-50 hover:text-teal-600",
                                   "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
                                 )}
                                 href={item.href}
                               >
-                                <item.icon
-                                  aria-hidden="true"
-                                  className={clsx(
-                                    item.current
-                                      ? "text-indigo-600"
-                                      : "text-gray-400 group-hover:text-indigo-600",
-                                    "h-6 w-6 shrink-0"
-                                  )}
-                                />
                                 {item.name}
                               </a>
                             </li>
@@ -135,31 +143,31 @@ export const Nav = () => {
                       </li>
                       <li>
                         <div className="text-xs font-semibold leading-6 text-gray-400">
-                          Your teams
+                          定期便の商品を探す
                         </div>
                         <ul className="-mx-2 mt-2 space-y-1">
-                          {teams.map((team) => (
-                            <li key={team.name}>
+                          {regulars.map((regular) => (
+                            <li key={regular.name}>
                               <a
                                 className={clsx(
-                                  team.current
-                                    ? "bg-gray-50 text-indigo-600"
-                                    : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+                                  pathname === regular.href
+                                    ? "bg-gray-50 text-amber-600"
+                                    : "text-gray-700 hover:bg-gray-50 hover:text-amber-600",
                                   "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
                                 )}
-                                href={team.href}
+                                href={regular.href}
                               >
                                 <span
                                   className={clsx(
-                                    team.current
-                                      ? "border-indigo-600 text-indigo-600"
-                                      : "border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600",
+                                    pathname === regular.href
+                                      ? "border-amber-600 text-amber-600"
+                                      : "border-gray-200 text-gray-400 group-hover:border-amber-600 group-hover:text-amber-600",
                                     "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium"
                                   )}
                                 >
-                                  {team.initial}
+                                  {regular.initial}
                                 </span>
-                                <span className="truncate">{team.name}</span>
+                                <span className="truncate">{regular.name}</span>
                               </a>
                             </li>
                           ))}
@@ -167,14 +175,14 @@ export const Nav = () => {
                       </li>
                       <li className="mt-auto">
                         <Link
-                          className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+                          className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-gray-600"
                           href="/"
                         >
-                          <Cog6ToothIcon
+                          <ShoppingCartIcon
                             aria-hidden="true"
-                            className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                            className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-gray-600"
                           />
-                          Settings
+                          カートを見る
                         </Link>
                       </li>
                     </ul>
@@ -192,7 +200,7 @@ export const Nav = () => {
             <img
               alt="Your Company"
               className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="https://tailwindui.com/img/logos/mark.svg?color=teal&shade=600"
             />
           </div>
           <nav className="flex flex-1 flex-col">
@@ -203,22 +211,13 @@ export const Nav = () => {
                     <li key={item.name}>
                       <a
                         className={clsx(
-                          item.current
-                            ? "bg-gray-50 text-indigo-600"
-                            : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+                          pathname === item.href
+                            ? "bg-gray-50 text-teal-600"
+                            : "text-gray-700 hover:bg-gray-50 hover:text-teal-600",
                           "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
                         )}
                         href={item.href}
                       >
-                        <item.icon
-                          aria-hidden="true"
-                          className={clsx(
-                            item.current
-                              ? "text-indigo-600"
-                              : "text-gray-400 group-hover:text-indigo-600",
-                            "h-6 w-6 shrink-0"
-                          )}
-                        />
                         {item.name}
                       </a>
                     </li>
@@ -227,46 +226,46 @@ export const Nav = () => {
               </li>
               <li>
                 <div className="text-xs font-semibold leading-6 text-gray-400">
-                  Your teams
+                  定期便の商品を探す
                 </div>
                 <ul className="-mx-2 mt-2 space-y-1">
-                  {teams.map((team) => (
-                    <li key={team.name}>
+                  {regulars.map((regular) => (
+                    <li key={regular.name}>
                       <a
                         className={clsx(
-                          team.current
-                            ? "bg-gray-50 text-indigo-600"
-                            : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+                          pathname === regular.href
+                            ? "bg-gray-50 text-amber-600"
+                            : "text-gray-700 hover:bg-gray-50 hover:text-amber-600",
                           "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
                         )}
-                        href={team.href}
+                        href={regular.href}
                       >
                         <span
                           className={clsx(
-                            team.current
-                              ? "border-indigo-600 text-indigo-600"
-                              : "border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600",
+                            pathname === regular.href
+                              ? "border-amber-600 text-amber-600"
+                              : "border-gray-200 text-gray-400 group-hover:border-amber-600 group-hover:text-amber-600",
                             "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium"
                           )}
                         >
-                          {team.initial}
+                          {regular.initial}
                         </span>
-                        <span className="truncate">{team.name}</span>
+                        <span className="truncate">{regular.name}</span>
                       </a>
                     </li>
                   ))}
                 </ul>
-              </li>
+              </li>{" "}
               <li className="mt-auto">
                 <Link
-                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-gray-600"
                   href="/"
                 >
-                  <Cog6ToothIcon
+                  <ShoppingCartIcon
                     aria-hidden="true"
-                    className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                    className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-gray-600"
                   />
-                  Settings
+                  カートを見る
                 </Link>
               </li>
             </ul>
