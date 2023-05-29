@@ -7,7 +7,9 @@ import { ActionIcon } from "@/components/Elements/ActionIcon";
 import { Avatar } from "@/components/Elements/Avatar";
 import { MenuButton } from "@/components/Layouts/Header/clients/MenuButton";
 
-export const Header = () => {
+export const Header = async () => {
+  // const user = getUser();
+
   return (
     <div className="flex h-16 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 md:px-0 md:shadow-none">
       <MenuButton />
@@ -32,15 +34,25 @@ export const Header = () => {
           />
         </form>
         <div className="flex items-center gap-x-4 md:gap-x-6">
-          <div className="flex flex-col items-center justify-center space-y-1">
-            <ActionIcon
-              className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
-              theme="transparent"
-              type="button"
-            >
-              <span className="sr-only">カートを見る</span>
-              <ShoppingCartIcon aria-hidden="true" className="h-6 w-6" />
-            </ActionIcon>
+          <div className="flex  items-center justify-center md:gap-x-3">
+            <div className="mt-1 flex items-center gap-x-1.5">
+              <button className="text-xs text-blue-600 hover:text-blue-500">
+                ログイン
+              </button>
+              <div
+                aria-hidden="true"
+                className="hidden md:block md:h-6 md:w-px md:bg-gray-200"
+              />
+              <button className="text-xs text-blue-600 hover:text-blue-500">
+                新規登録
+              </button>
+            </div>
+            <Avatar
+              alt="avatar"
+              className="hidden lg:block"
+              isAction
+              size="sm"
+            />
           </div>
 
           {/* Separator */}
@@ -48,7 +60,14 @@ export const Header = () => {
             aria-hidden="true"
             className="hidden md:block md:h-6 md:w-px md:bg-gray-200"
           />
-          <Avatar alt="avatar" isAction size="sm" />
+          <ActionIcon
+            className="-m-2.5 p-2.5 text-gray-400 shadow-none hover:text-gray-500"
+            theme="transparent"
+            type="button"
+          >
+            <span className="sr-only">カートを見る</span>
+            <ShoppingCartIcon aria-hidden="true" className="h-6 w-6" />
+          </ActionIcon>
         </div>
       </div>
     </div>
